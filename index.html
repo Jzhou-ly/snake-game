@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07110d" />
+    <title>霓虹贪吃蛇</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell" aria-labelledby="game-title">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <div>
+            <p class="eyebrow">ARCADE // 01</p>
+            <h1 id="game-title">霓虹贪吃蛇</h1>
+          </div>
+        </div>
+
+        <div class="scoreboard" aria-live="polite">
+          <div class="score-item">
+            <span>当前得分</span>
+            <strong id="score">000</strong>
+          </div>
+          <div class="score-divider" aria-hidden="true"></div>
+          <div class="score-item">
+            <span>最高纪录</span>
+            <strong id="high-score">000</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="game-card">
+        <div class="game-card__header">
+          <div class="status">
+            <span class="status-dot"></span>
+            <span id="status-text">准备就绪</span>
+          </div>
+          <button class="icon-button" id="restart-button" type="button" aria-label="重新开始游戏" title="重新开始">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="game-canvas" width="600" height="600" aria-label="贪吃蛇游戏区域"></canvas>
+          <div class="scanline" aria-hidden="true"></div>
+
+          <div class="start-hint" id="start-hint">
+            <span class="hint-icon" aria-hidden="true">⌁</span>
+            <strong>按方向键开始</strong>
+            <span>吃掉能量核心，避开边界和自己</span>
+          </div>
+        </div>
+
+        <div class="game-card__footer">
+          <div class="key-guide" aria-label="操作说明">
+            <span class="key">↑</span>
+            <span class="key">↓</span>
+            <span class="key">←</span>
+            <span class="key">→</span>
+            <span>控制移动</span>
+          </div>
+          <div class="speed-label"><span>速度</span><strong id="speed-level">01</strong></div>
+        </div>
+      </section>
+
+      <section class="mobile-controls" aria-label="方向控制">
+        <button type="button" data-direction="up" aria-label="向上">↑</button>
+        <div>
+          <button type="button" data-direction="left" aria-label="向左">←</button>
+          <button type="button" data-direction="down" aria-label="向下">↓</button>
+          <button type="button" data-direction="right" aria-label="向右">→</button>
+        </div>
+      </section>
+
+      <p class="tip">每获得 5 分，能量速度提升一级</p>
+    </main>
+
+    <div class="modal" id="game-over-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal-backdrop"></div>
+      <div class="modal-card">
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 8v5M12 17h.01M10.3 3.8 2.7 17a2 2 0 0 0 1.73 3h15.14a2 2 0 0 0 1.73-3L13.7 3.8a2 2 0 0 0-3.4 0Z" /></svg>
+        </div>
+        <p class="eyebrow">SIGNAL LOST</p>
+        <h2 id="modal-title">游戏结束</h2>
+        <p class="modal-copy">本次获得 <strong id="final-score">0</strong> 分</p>
+        <p class="new-record" id="new-record" hidden>新纪录！</p>
+        <button id="play-again-button" type="button">再来一局 <span>↗</span></button>
+        <span class="modal-shortcut">按 Enter 快速重启</span>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
